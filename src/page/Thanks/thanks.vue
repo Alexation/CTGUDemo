@@ -24,15 +24,140 @@
           </el-pagination> -->
 
           <!-- <div style="margin-top:3%" v-for="(challenge,i) in tableData" :key="i"> -->
-          
-          <div style="margin-top:3%;margin-bottom:3%">
+
+
+          <div style="margin-top:3%;margin-bottom:3%;margin-left:15%;margin-right:15%;">
+
+<el-form ref="form" :model="form" label-width="80px">
+  <el-form-item label="您的姓名">
+    <el-input v-model="form.name"></el-input>
+  </el-form-item>
+
+  <el-form-item label="填写时间">
+    <el-col :span="11">
+      <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+    </el-col>
+    <el-col class="line" :span="2">-</el-col>
+    <el-col :span="11">
+      <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
+    </el-col>
+  </el-form-item>
+
+  <!-- <el-form-item label="购买意愿">
+    <el-switch v-model="form.delivery"></el-switch>
+  </el-form-item> -->
+
+  <!-- <el-form-item label="活动性质">
+    <el-checkbox-group v-model="form.type">
+      <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
+      <el-checkbox label="地推活动" name="type"></el-checkbox>
+      <el-checkbox label="线下主题活动" name="type"></el-checkbox>
+      <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
+    </el-checkbox-group>
+  </el-form-item> -->
+
+
+
+    <el-form-item label="您的职业">
+      <el-input v-model="form.work"></el-input>
+    </el-form-item>
+    <el-form-item label="年龄">
+      <el-input v-model="form.age"></el-input>
+  </el-form-item>
+      <el-form-item label="所在地区">
+      <el-input v-model="form.region"></el-input>
+  </el-form-item>
+    <el-form-item label="您的性别">
+    <el-select v-model="form.sex" placeholder="请选择">
+      <el-option label="男" value="boy"></el-option>
+      <el-option label="女" value="girl"></el-option>
+    </el-select>
+  </el-form-item>
+
+    <el-form-item label="教育程度">
+    <el-select v-model="form.pro" placeholder="请选择">
+      <el-option label="小学" value="small"></el-option>
+      <el-option label="初中" value="middle"></el-option>
+      <el-option label="高中" value="high"></el-option>
+      <el-option label="大学及以上" value="university"></el-option>
+    </el-select>
+  </el-form-item>
+
+    <el-form-item label="健康状况">
+    <el-select v-model="form.health" placeholder="请选择">
+      <el-option label="自我感觉良好" value="good"></el-option>
+      <el-option label="自我感觉一般" value="somesome"></el-option>
+      <el-option label="自我感觉很差" value="bad"></el-option>
+    </el-select>
+  </el-form-item>
+
+
+
+  <!-- <el-form-item label="是否有慢性疾病">
+    <el-radio-group v-model="form.ques1">
+      <el-radio label="是的"></el-radio>
+      <el-radio label="没有"></el-radio>
+      <el-radio label="不知道"></el-radio>
+    </el-radio-group>
+  </el-form-item>
+  <el-form-item label="已参加哪类基本保险">
+    <el-radio-group v-model="form.ques2">
+      <el-radio label="寿险"></el-radio>
+      <el-radio label="重疾险"></el-radio>
+      <el-radio label="医疗险"></el-radio>
+      <el-radio label="意外险"></el-radio>
+      <el-radio label="财产保险"></el-radio>
+      <el-radio label="未购买"></el-radio>
+    </el-radio-group>
+  </el-form-item>
+    <el-form-item label="新冠肺炎疫情发生之前，是否有买商业健康险？">
+    <el-radio-group v-model="form.ques3">
+      <el-radio label="是的"></el-radio>
+      <el-radio label="购买"></el-radio>
+    </el-radio-group>
+  </el-form-item>
+    <el-form-item label="疫情发生后，是否有购买？">
+    <el-radio-group v-model="form.ques4">
+      <el-radio label="是的"></el-radio>
+      <el-radio label="未购买"></el-radio>
+    </el-radio-group>
+  </el-form-item>
+    <el-form-item label="发生以后，您购买的是哪种类型的商业健康保险？">
+    <el-radio-group v-model="form.ques5">
+      <el-radio label="寿险"></el-radio>
+      <el-radio label="重疾险"></el-radio>
+      <el-radio label="医疗险"></el-radio>
+      <el-radio label="意外险"></el-radio>
+      <el-radio label="财产保险"></el-radio>
+      <el-radio label="未购买"></el-radio>
+    </el-radio-group>
+  </el-form-item> -->
+
+
+  <!-- <el-form-item label="活动形式">
+    <el-input type="textarea" v-model="form.desc"></el-input>
+  </el-form-item> -->
+
+  <!-- <el-form-item>
+    <el-button type="primary">立即创建</el-button>
+    <el-button>取消</el-button>
+  </el-form-item> -->
+</el-form>
+
+            <br>
+
+
+
+
+
             
         <el-card style="margin-left:10%;margin-right:10%;"
         v-for="(challenge,i) in tableData" :key="i">
           <div slot="header" class="clearfix">
-            <span>题目{{i+1}}: {{ challenge.question }}</span>
+            <!-- <span>题目{{i+1}}: {{ challenge.question }}</span> -->
+            <span>{{ challenge.question }}</span>
           </div>
-            <el-radio-group v-model="radio[i]">
+            <el-radio-group v-model="form.radio[i]">
               <el-radio v-for="(checks,i) in challenge.radios" :label="checks" :key="i" >{{ checks }}</el-radio>
             </el-radio-group>
         </el-card>
@@ -88,13 +213,30 @@
   export default {
     data () {
       return {
-        radio: [],
+        // radio: [],
         thankPanel: [],
         tableData: [],
         currentPage: 1,
         pageSize: 10,
         total: 0,
-        loading: true
+        loading: true,
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: '',
+          sex: '',
+          pro: '',
+          work: '',
+          age: '',
+          health: '',
+          radio: []
+
+        }
       }
     },
     methods: {

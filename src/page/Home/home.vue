@@ -6,7 +6,7 @@
       <div class="bg" ref="bg"
         @mouseover="bgOver($refs.bg)" @mousemove="bgMove($refs.bg,$event)" @mouseout="bgOut($refs.bg)">
         <transition name="fade">
-          <div v-for="(item, i) in banner" v-if="i===mark" :key="i" style="position:absolute" @click="linkTo(item)" @mouseover="stopTimer" @mouseout="startTimer">
+          <div v-for="(item, i) in banner" v-if="i===mark" :key="i" style="position:absolute"  @mouseover="stopTimer" @mouseout="startTimer">
             <img v-if="item.imgUrl" class="img1" :src="item.imgUrl"/>
             <img v-if="item.imgUrl"  class="img2 a" :src="item.imgUrl"/>
             <img v-if="item.imgUrl"  class="img3 b" :src="item.imgUrl"/>
@@ -80,6 +80,7 @@
 
 </template>
 <script>
+import { axios } from "axios";
   import { productHome } from '/api/index.js'
   import { getRecommandGoods } from '/api/goods.js'
   import YShelf from '/components/shelf'
@@ -178,6 +179,21 @@
       }
     },
     mounted () {
+      // const axios = require('axios').default;
+      // const headers = { "Access-Control-Allow-Origin": "https://wp.m.163.com" };
+
+      // let demoUrl = '/ug/api/wuhan/app/data/list-total'
+      // axios.get(demoUrl,{headers:headers}).then(res => {
+      //   console.log(res)
+      // })
+
+      // axios({
+      //   url: demoUrl,
+      //   method: 'get',
+      // }).then(res=>{
+      //   console.log(res)
+      // })
+
       productHome().then(res => {
         if (res.code !== 200) {
           this.error = true

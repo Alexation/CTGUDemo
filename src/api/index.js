@@ -117,3 +117,13 @@ export const getQues = (params) => {
     params: params,
   })
 }
+
+export const getOrderId = (params) => {
+  return requests({
+    // url: '/goodsDetails?productId=150642571432839',
+    url: `/order/get/cus/${params}`,
+    // url: '/category',
+    method: 'get',
+    // params: params,
+  })
+}

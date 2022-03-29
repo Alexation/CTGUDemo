@@ -25,14 +25,20 @@ module.exports = {
         // target: 'http://49.235.97.156:8081',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777 
         target: 'https://ins-spring-boot-1618793-1309615625.ap-shanghai.run.tcloudbase.com/',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777 
         changeOrigin: true,
+        secure: false,
         pathRewrite: {
           '^/api': ''
         }
         // target: 'http://xmall.exrick.cn'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777 
       },
-      '/goods/*': {
+      '/ug/*': {
         // target: 'http://127.0.0.1:7777'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
-        target: 'http://xmall.exrick.cn'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
+        target: 'https://c.m.163.com',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/ug': ''
+        }
       }
     },
     productionGzipExtensions: ['js', 'css'],
@@ -65,9 +71,14 @@ module.exports = {
         }
         // target: 'http://xmall.exrick.cn'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777 
       },
-      '/goods/*': {
+      '/yiqing': {
         // target: 'http://127.0.0.1:7777'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
-        target: 'http://xmall.exrick.cn'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
+        target: 'https://gwpre.sina.cn/',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/yiqing': ''
+        }
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

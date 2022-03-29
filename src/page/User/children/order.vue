@@ -7,48 +7,48 @@
             <div class="gray-sub-title cart-title">
               <div class="first">
                 <div>
-                  <span class="date" v-text="item.createDate"></span>
+                  <span class="date" v-text="item.buyTime"></span>
                   <span class="order-id"> 订单号： <a @click="orderDetail(item.orderId)">{{item.orderId}}</a> </span>
                 </div>
                 <div class="f-bc">
-                  <span class="price">单价</span>
-                  <span class="num">数量</span>
-                  <span class="operation">商品操作</span>
+                  <span class="price">实付金额</span>
+                  <!-- <span class="num">数量</span> -->
+                  <!-- <span class="operation">商品操作</span> -->
                 </div>
               </div>
-              <div class="last">
-                <span class="sub-total">实付金额</span>
-                <span class="order-detail"> <a @click="orderDetail(item.orderId)">查看详情 ><em class="icon-font"></em></a> </span>
-              </div>
+              <!-- <div class="last">
+                <span class="sub-total">实付金额</span> -->
+                <!-- <span class="order-detail"> <a @click="orderDetail(item.id)">查看详情 ><em class="icon-font"></em></a> </span> -->
+              <!-- </div> -->
             </div>
             <div class="pr">
-              <div class="cart" v-for="(good,j) in item.goodsList" :key="j">
+              <div class="cart" v-for="(good,j) in item.products" :key="j">
                 <div class="cart-l" :class="{bt:j>0}">
                   <div class="car-l-l">
-                    <div class="img-box"><a @click="goodsDetails(good.productId)"><img :src="good.productImg" alt=""></a></div>
-                    <div class="ellipsis"><a style="color: #626262;" @click="goodsDetails(good.productId)">{{good.productName}}</a></div>
+                    <div class="img-box"><a @click="goodsDetails(good.id)"><img :src="good.planImgUrl" alt=""></a></div>
+                    <div class="ellipsis"><a style="color: #626262;" @click="goodsDetails(good.id)">{{good.name}}</a></div>
                   </div>
                   <div class="cart-l-r">
-                    <div>¥ {{Number(good.salePrice).toFixed(2)}}</div>
-                    <div class="num">{{good.productNum}}</div>
-                    <div class="type">
-                      <el-button style="margin-left:20px" @click="_delOrder(item.orderId,i)" type="danger" size="small" v-if="j<1" class="del-order">删除此订单</el-button>
+                    <div>¥ {{Number(good.price).toFixed(2)}}</div>
+                    <!-- <div class="num">{{good.productNum}}</div> -->
+                    <!-- <div class="type"> -->
+                      <!-- <el-button style="margin-left:20px" @click="_delOrder(item.id,i)" type="danger" size="small" v-if="j<1" class="del-order">删除此订单</el-button> -->
                       <!-- <a @click="_delOrder(item.orderId,i)" href="javascript:;" v-if="j<1" class="del-order">删除此订单</a> -->
-                    </div>
+                    <!-- </div> -->
                   </div>
                 </div>
-                <div class="cart-r">
+                <!-- <div class="cart-r">
                   <span></span>
                   <span></span>
-                </div>
+                </div> -->
               </div>
-              <div class="prod-operation pa" style="right: 0;top: 0;">
-                <div class="total">¥ {{item.orderTotal}}</div>
+              <!-- <div class="prod-operation pa" style="right: 0;top: 0;">
+                <div class="total">¥ {{item.price}}</div>
                 <div v-if="item.orderStatus === '0'">
                   <el-button @click="orderPayment(item.orderId)" type="primary" size="small">现在付款</el-button>
                 </div>
                 <div class="status" v-if="item.orderStatus !== '0'"> {{getOrderStatus(item.orderStatus)}}  </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -74,13 +74,15 @@
 </template>
 <script>
   import { orderList, delOrder } from '/api/goods'
+  import { getOrderId } from '/api/index'
   import YShelf from '/components/shelf'
   import { userInfo } from '/api'
+  import { mapState } from 'vuex'
   import { getStore } from '/utils/storage'
   export default {
     data () {
       return {
-        orderList: [0],
+        orderList: [],
         userId: '',
         orderStatus: '',
         loading: true,
@@ -88,6 +90,9 @@
         pageSize: 5,
         total: 0
       }
+    },
+    computed: {
+      ...mapState(['userInfo'])
     },
     methods: {
       message (m) {
@@ -139,7 +144,7 @@
             pageSize: this.pageSize
         }
         orderList(params).then(res => {
-          console.log(res);
+          // console.log(res);
           // this.orderList = res.data.products
           // this.total = res.data.products.length()
           // this.loading = false
@@ -172,6 +177,13 @@
     },
     components: {
       YShelf
+    },
+    mounted () {
+      getOrderId(this.userInfo.info.id).then(res => {
+        console.log(res)
+        this.orderList = res.data
+        this.loading = false
+      })
     }
   }
 </script>

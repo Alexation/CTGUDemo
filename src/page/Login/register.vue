@@ -19,6 +19,7 @@
           ref="ruleForm" 
           label-width="100px" 
           class="demo-ruleForm"
+          label-position="left"
 
           >
             
@@ -34,9 +35,9 @@
               <el-input type="password" v-model="ruleForm.checkPass" autoComplete="off"></el-input>
             </el-form-item>
 
-            <!-- <el-form-item label="年龄" prop="age">
-              <el-input v-model.number="ruleForm.age"></el-input>
-            </el-form-item> -->
+            <el-form-item label="真实姓名" prop="name">
+              <el-input v-model="ruleForm.name"></el-input>
+            </el-form-item>
 
             <el-form-item label="邮箱" prop="email">
               <div>
@@ -55,7 +56,7 @@
             </el-form-item>
 
             <el-form-item label="验证码" prop="captcha">
-              <el-input v-model.number="ruleForm.captcha"></el-input>
+              <el-input v-model="ruleForm.captcha"></el-input>
             </el-form-item>
              
 
@@ -184,7 +185,7 @@ export default {
             this.submitValid = true;
             callback();
           }
-        }, 1000);
+        }, 100);
       };
       var validatePass = (rule, value, callback) => {
         if (value === '') {
@@ -239,7 +240,7 @@ export default {
         userName: '',
         userPwd: '',
         checkPass: '',
-        age: '',
+        name: '',
         errMsg: "",
         email: "",
         captcha: '',
@@ -312,7 +313,7 @@ export default {
         },1000);
         SendEmailCaptcha({ to: this.ruleForm.email }).then((res) => {
           if (res.code === 200) {
-            console.log(res);
+            // console.log(res);
             // this.messageSuccess();
             this.messageSuccess(res.msg);
             // this.toLogin();
@@ -399,16 +400,18 @@ export default {
         username: this.ruleForm.userName,
         password: this.ruleForm.userPwd,
         code: this.ruleForm.captcha,
+        email: this.ruleForm.email,
+        name: this.ruleForm.name,
       };
       window.localStorage.setItem("satoken", "");
       register(updateData).then((res) => {
         if (res.code === 200) {
-          console.log(res);
+          // console.log(res);
           this.messageSuccess('恭喜你注册成功，抓紧去登录吧！');
           this.toLogin();
         } else {
           // console.log(res);
-          // this.messageSuccess(res.msg);
+          this.message(res.msg);
           // // captcha.reset();
           // // this.init_geetest()
           // // location.reload()
@@ -515,9 +518,6 @@ export default {
     padding: 0 40px 22px;
     height: auto;
     .common-form {
-      .el-form-item__label {
-        text-align: left!important;
-      } 
       li {
         clear: both;
         margin-bottom: 15px;

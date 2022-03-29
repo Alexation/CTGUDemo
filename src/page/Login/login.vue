@@ -48,6 +48,7 @@
             <y-button :text="logintxt"
                       :classStyle="ruleForm.userPwd&& ruleForm.userName&& logintxt === '登录'?'main-btn':'disabled-btn'"
                       @btnClick="login"
+                      
                       style="margin: 0;width: 100%;height: 48px;font-size: 18px;line-height: 48px"></y-button>
           </div>
           <!--返回-->
@@ -80,7 +81,8 @@ require('../../../static/geetest/gt.js')
 export default {
   data () {
     return {
-      captchaUrl: '/api/captcha',
+      // captchaUrl: '/api/captcha',
+      captchaUrl: 'https://ins-spring-boot-1618793-1309615625.ap-shanghai.run.tcloudbase.com/captcha',
       cart: [],
       showcaptcha: true,
       loading: true,
@@ -99,7 +101,8 @@ export default {
       },
       autoLogin: false,
       logintxt: '登录',
-      statusKey: ''
+      statusKey: '',
+      ImgData: ''
     }
   },
   computed: {
@@ -109,7 +112,10 @@ export default {
   },
   methods: {
     getCaptcha(event) {
-      this.captchaUrl = '/api/captcha?time=' + Date.now()
+      // geetest()
+      // this.captchaUrl = '/api/captcha?time=' + Date.now()
+      this.captchaUrl = 'https://ins-spring-boot-1618793-1309615625.ap-shanghai.run.tcloudbase.com/captcha?time=' + Date.now()
+    //   this.captchaUrl = '/api/captcha'
     },
     open (t, m) {
       this.$notify.info({
@@ -217,10 +223,10 @@ export default {
         //     })
         //   } else {
             this.$router.push({
-              path: '/home'
+              path: '/thanks'
             })
         // }
-          console.log(res)
+          // console.log(res)
         } 
         else if(res.code === 500 && res.msg) {
           this.logintxt = '登录'
@@ -240,9 +246,13 @@ export default {
     },
     init_geetest () {
       geetest().then(res => {
-        if(res.code === 200) {
-          this.loading = false;
-        }
+        this.ImgData = res
+        // console.log(res)
+        // if(res.code === 200) {
+        //   // this.loading = false;
+        //   ImgData = res
+        //   console.log(res)
+        // }
       })
     }
   },
@@ -250,7 +260,14 @@ export default {
     this.getRemembered()
     this.login_addCart()
     // this.init_geetest()
-    this.open('登录提示', '测试体验账号密码：yxr1 | 123')
+    this.open('登录提示', '测试体验账号密码：admin | 123')
+    let self = this
+    document.onkeydown = function(e) {
+      let ev = document.all ? window.event : e
+      if (ev.keyCode === 13) {
+        self.login()
+      }
+    }
   },
   components: {
     YFooter,

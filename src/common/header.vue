@@ -1,6 +1,6 @@
 <template>
+<div class="box-container">
   <div class="header-box">
-
     <div class="header-wrapper">
       <!-- <div class="nav-sub" :class="{fixed:st}"> -->
         <!-- <div class="nav-sub-bg"></div> -->
@@ -38,6 +38,7 @@
                 <el-input
                   placeholder="请输入商品信息"
                   icon="search"
+                  style="width:500px"
                   v-model="input"
                   @select="handleSelect"
                   :on-icon-click="handleIconClick"
@@ -45,6 +46,7 @@
                 </el-input>
                 <router-link to="/goods"><a @click="changePage(2)">全部商品</a></router-link>
                 <router-link to="/thanks"><a @click="changePage(4)">调查问卷</a></router-link>
+                <router-link to="/map"><a @click="changePage(4)">疫情地图</a></router-link>
                 <!-- <router-link to="/category"><a @click="changePage(4)">保险分类</a></router-link> -->
                 <!-- <router-link to="/">Smartisan M1 / M1L</router-link>
                 <router-link to="/">Smartisan OS</router-link>
@@ -190,6 +192,7 @@
         </div>
       </slot> -->
     </div>
+  </div>
   </div>
 </template>
 <script>
@@ -538,20 +541,27 @@
   }
 
   .header-box {
+    position: fixed;
     // background: $head-bgc;
     // background-image: -webkit-linear-gradient(#000, #121212);
     // background-image: linear-gradient(#000, #121212);
-    background-image: linear-gradient(to right, #bf30ac 0%, #0f9d58 100%);
+    // background-image: linear-gradient(to down, #bf30ac 0%, #0f9d58 100%);
+    // background-image: linear-gradient(0deg, #6f83db 0%,  #9face7  100%);
+    background-image: linear-gradient(0deg, #6f83db 0%,  #867fef  100%);
     width: 100%;
 
-    position: relative;
+    // position: relative;
     height: 80px;
     z-index: 999;
 
   }
+  .box-container {
+    height: 80px;
+  }
+
   .header-active{
-    position: fixed;
-    top: 0;
+    // position: fixed;
+    // top: 0;
   }
 
   header {

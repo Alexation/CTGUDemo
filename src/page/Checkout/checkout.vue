@@ -294,7 +294,7 @@
       },
       _addressList () {
         userInfo(window.localStorage.getItem('id')).then(res => {
-          console.log(res);
+          // console.log(res);
           let data = res.data
           if (data.length) {
             this.addList = data
@@ -451,10 +451,10 @@
           products: [{id:this.productId}],
           amount: this.productPrice,
           channel: this.radio,
-          address: '宜昌市'
+          address: this.userInfo.info.address,
         }
         submitOrder(params).then(res => {
-          console.log(res);
+          // console.log(res);
           // if (res.success === true) {
           //   this.payment(res.result)
           // } else {

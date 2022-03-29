@@ -4,6 +4,8 @@ import nprogress from 'nprogress';
 import 'nprogress/nprogress.css'
 import { getStore } from '/utils/storage.js'
 
+axios.defaults.withCredentials=true;
+
 //利用axios对象的方法create，创建一个axios实例
 //request就是axios，只不过稍微配置一下
 const requests = axios.create({
@@ -17,9 +19,14 @@ const requests = axios.create({
 requests.interceptors.request.use((config)=>{
   nprogress.start()
   //config: 配置对象，对象里面有一个属性很重要，headers请求头
+
+  config.headers['Access-Control-Allow-Credentials'] = "true";
+  // config.headers['Access-Control-Allow-Origin'] = "https://ins-spring-boot-1618793-1309615625.ap-shanghai.run.tcloudbase.com/";
+
   const tokenStr = window.localStorage.getItem("satoken")
   if (tokenStr){
     config.headers['satoken'] = tokenStr;
+
   }
   return config;
 })

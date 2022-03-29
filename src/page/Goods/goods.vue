@@ -73,18 +73,18 @@
           </y-shelf>
         </section>
       </div>
-      <div class="no-info" v-if="error">
+      <!-- <div class="no-info" v-if="error">
         <div class="no-data">
           <img src="/static/images/error.png">
           <br> 抱歉！出错了...
-        </div>
-        <section class="section">
+        </div> -->
+        <!-- <section class="section">
           <y-shelf :title="recommendPanel.name">
             <div slot="content" class="recommend">
               <mall-goods :msg="item" v-for="(item,i) in recommendPanel.panelContents" :key="i"></mall-goods>
             </div>
           </y-shelf>
-        </section>
+        </section> -->
       </div>
     </div>
 
@@ -125,9 +125,11 @@
           this.goods = this.Allgoods
           this.CurrentCagetory = '全部保险'
         }else{
-          this.CurrentCagetory = item.data.name
+          // console.log(item)
+          this.CurrentCagetory = item.name
           getCategoryGoods(item.category.cateName).then(res => {
             if (res.code === 200) {
+              console.log(res)
               this.total = res.data.length
               this.goods = res.data
               this.noResult = false
@@ -167,6 +169,7 @@
         }
         getAllGoods(params).then(res => {
           if (res.code === 200) {
+            // console.log(res)
             this.total = res.data.total
             this.goods = res.data.data
             this.Allgoods = res.data.data
