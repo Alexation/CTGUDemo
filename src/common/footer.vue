@@ -136,8 +136,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // background-image: linear-gradient(to right, #bf30ac 0%, #0f9d58 100%);
-    background-image: linear-gradient(0deg, #6f83db 0%,  #867fef  100%);
+    background-image: linear-gradient(to right, #bf30ac 0%, #0f9d58 100%);
+    // background-image: linear-gradient(0deg, #6f83db 0%,  #867fef  100%);
   }
 
   .container {

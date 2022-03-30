@@ -12,8 +12,14 @@ import { CheckboxGroup, Switch, DatePicker, TimePicker, RadioGroup, Card, Radio,
 import { getStore } from '/utils/storage'
 import VueContentPlaceholders from 'vue-content-placeholders'
 
-import VueParticles from 'vue-particles' 
-Vue.use(VueParticles) 
+// import VueParticles from 'vue-particles' 
+// Vue.use(VueParticles) 
+
+// import Toast from './components/toast'
+// Vue.prototype.$Toast = Toast
+
+// import Vcomp from './components/index'
+// Vue.use(Vcomp)
 
 Vue.use(VueContentPlaceholders)
 Vue.use(RadioGroup)
@@ -143,6 +149,5 @@ new Vue({
   el: '#app',
   store,
   router,
-  components: {VueParticles},
   render: h => h(App)
 })

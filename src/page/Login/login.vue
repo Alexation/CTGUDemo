@@ -74,7 +74,7 @@ import YFooter from '/common/footer'
 import YButton from '/components/YButton'
 import { userLogin, geetest } from '/api/index.js'
 import { addCart } from '/api/goods.js'
-import store from '../../store/'
+import store from '../../store'
 import { setStore, getStore, removeStore } from '/utils/storage.js'
 require('../../../static/geetest/gt.js')
 

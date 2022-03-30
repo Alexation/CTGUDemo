@@ -31,13 +31,13 @@ module.exports = {
         }
         // target: 'http://xmall.exrick.cn'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777 
       },
-      '/ug/*': {
+      '/yiqing': {
         // target: 'http://127.0.0.1:7777'  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
-        target: 'https://c.m.163.com',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
+        target: 'https://gwpre.sina.cn/',  // 请求本地 需要xmall后台项目 默认127.0.0.1:7777
         changeOrigin: true,
         secure: false,
         pathRewrite: {
-          '^/ug': ''
+          '^/yiqing': ''
         }
       }
     },

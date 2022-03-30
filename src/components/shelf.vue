@@ -50,8 +50,8 @@ $textColor: #5362F6;
     box-shadow: 0 3px 8px -6px rgba(3, 2, 2, 0.1);
     // 
     .title {
-      color: $textColor;
-      text-shadow: textShadow(0.25, 2, #E485F8);
+      // color: $textColor;
+      // text-shadow: textShadow(0.25, 2, #E485F8);
 
       background-color: #666;
       padding-left: 30px;
@@ -66,12 +66,12 @@ $textColor: #5362F6;
       background: -webkit-linear-gradient(#fbfbfb, #ececec);
       background: linear-gradient(#fbfbfb, #ececec);
       line-height: 60px;
-      font: 18px/100% '微软雅黑';
+      font: 20px/100% '微软雅黑';
       display: flex;
       justify-content: space-between;
       align-items: center;
       h2 {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
         display: inline-block;
         text-transform: uppercase;

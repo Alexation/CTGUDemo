@@ -22,6 +22,8 @@
               <!-- <router-link to="/" title="CTGU保险推荐系统">CTGU保险推荐系统</router-link> -->
             </div>
 
+
+
             <div class="right-box">
               <div class="nav-list">
                 <!-- <el-autocomplete
@@ -38,7 +40,7 @@
                 <el-input
                   placeholder="请输入商品信息"
                   icon="search"
-                  style="width:500px"
+                  style="width:480px"
                   v-model="input"
                   @select="handleSelect"
                   :on-icon-click="handleIconClick"
@@ -61,6 +63,7 @@
               <div class="nav-aside" ref="aside" >
 
                 <div v-if="!isLogin">
+                <!-- <div> -->
                  <router-link to="/login">
                  <div style="color:#c8c8c8;">登录</div>
                  </router-link>
@@ -545,9 +548,9 @@
     // background: $head-bgc;
     // background-image: -webkit-linear-gradient(#000, #121212);
     // background-image: linear-gradient(#000, #121212);
-    // background-image: linear-gradient(to down, #bf30ac 0%, #0f9d58 100%);
+    background-image: linear-gradient(to right, #bf30ac 0%, #0f9d58 100%);
     // background-image: linear-gradient(0deg, #6f83db 0%,  #9face7  100%);
-    background-image: linear-gradient(0deg, #6f83db 0%,  #867fef  100%);
+    // background-image: linear-gradient(0deg, #6f83db 0%,  #867fef  100%);
     width: 100%;
 
     // position: relative;
@@ -579,7 +582,7 @@
     font-size: 26px;
     font-weight: 500;
     color: #fff;
-    flex: 20;
+    flex: 30;
   }
 
   .w-box {
@@ -614,7 +617,7 @@
         color: #c8c8c8;
         display: block;
         font-size: 14px;
-        padding: 0 25px;
+        padding: 0 20px;
         &:hover {
           color: #fff;
         }
